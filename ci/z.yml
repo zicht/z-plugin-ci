@@ -1,3 +1,5 @@
+# @version ">=2.0"
+
 # This file is more or less a copy of Sebastian Bergmann's build.xml on http://jenkins-php.org/
 # Credits go where credit's due.
 
@@ -67,7 +69,9 @@ tasks:
                 --report=checkstyle \
                 --report-file=build/logs/checkstyle.xml \
                 --standard=$(ci.phpcs.standard) src > /dev/null \
-                || true                                             # makes sure the exit code is 0
+                # makes sure the exit code is 0
+                || true
+
 
     ci.phpcd:
         unless: !ci.phpcd.enabled
