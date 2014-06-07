@@ -25,16 +25,16 @@ tasks:
     ci.build:
         help:   "Does a build for continuous integration"
         pre:    [ @ci.prepare, @ci.skel ]
-        do:     [ @ci.lint, @ci.pdepend, @ci.phpmd, @ci.phpcs, @ci.phploc, @ci.phpcpd, @ci.phpdox, @ci.phpunit, @ci.phpcb , @ci.karma]
+        do:     [ @ci.lint, @ci.pdepend, @ci.phpmd, @ci.phpcs, @ci.phploc, @ci.phpcd, @ci.phpdox, @ci.phpunit, @ci.phpcb , @ci.karma]
 
     ci.clean:
         help:   "Clean up the build dirs"
-        do:     rm -rf$(verbose ? "v") build/{api,code-browser,coverage,logs,pdepend}
+        do:     rm -rf$(VERBOSE ? "v") build/{api,code-browser,coverage,logs,pdepend}
 
     ci.prepare:
         help:   "Prepare the build dirs"
         pre:    @ci.clean
-        do:     mkdir -p$(verbose ? "v") build/{api,code-browser,coverage,logs,pdepend}
+        do:     mkdir -p$(VERBOSE ? "v") build/{api,code-browser,coverage,logs,pdepend}
 
     ci.lint:
         unless: !ci.lint.enabled
